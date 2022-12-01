@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.automationResults.mapper.ProjectMapper">
+
+
+
+	<!-- 新增项目 -->
+	<insert id="insertProject">
+		insert into
+		project(project_name,status,project_user,create_time)
+		values(#{projectName},'0',#{projectUser},now())
+	</insert>
+
+	<!-- 查询项目 -->
+	<select
+		id="getProjectList"
+		resultType="ProjectPojo">
+		SELECT project_id,project_name,project_user,status,project_user,creat_time
+		FROM project
+	</select>
+
+
+	<!-- 改变项目状态 -->
+	<update id="updateProjectStatus">
+		update project set status=#{status} where project_id
+		= #{projectId}
+	</update>
+
+	<!-- 查询项目 -->
+	<select id="selectProjiectNumByProjectName">
+		SELECT count(project_id) FROM project where
+		project_name = #{projectName}
+	</select>
+
+
+</mapper>

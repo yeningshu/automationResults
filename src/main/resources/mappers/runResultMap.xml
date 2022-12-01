@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--设置集标签 -->
+
+<!-- run_result表操作 -->
+<mapper
+	namespace="com.example.automationResults.mapper.RunResultMapper">
+
+	<!-- 新增报告 -->
+	<insert
+		id="insertResult"
+		parameterType="RunResultPojo">
+		<selectKey
+			resultType="java.lang.Integer"
+			order="AFTER"
+			keyProperty="id">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		run_result(project_id,project_name,start_time,executor)
+		values(#{projectId},#{projectName},#{startTime},#{executor})
+	</insert>
+
+
+	<!-- 添加相关结果信息 -->
+	<update id="updateResultById">
+		update run_result set results_success=#{resultsSuccess},
+		results_fail=#{resultsFail},results_skip=#{resultsSkip},end_time=#{endTime},
+		result_html_url=#{resultHtmlUrl},result_log_url=#{resultLogUrl}
+		where id = #{id}
+	</update>
+
+	<!-- 查询结果信息 -->
+	<select
+		id="getResultList"
+		resultType="RunResultPojo">
+		SELECT
+		id,project_id,project_name,results_success,results_fail,results_skip,start_time,end_time,executor,result_html_url,result_log_url
+		FROM run_result
+		WHERE
+		1=1
+		<if test="projectName != null and projectName != ''">
+			and project_name like concat('%',#{projectName},'%')
+		</if>
+		ORDER BY end_time DESC
+
+	</select>
+
+
+</mapper>
