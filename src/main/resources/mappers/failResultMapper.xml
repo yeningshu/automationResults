@@ -13,10 +13,10 @@
 		id="insertFailResult"
 		parameterType="FailResultPojo">
 		insert into
-		fail_result(run_id,project_id,fail_method,fail_message,owner,status,create_time,identify_people,notification_message,notification_time)
+		fail_result(run_id,project_id,fail_method,fail_message,owner,status,create_time)
 		values
 		<foreach item="data" collection="list" separator=",">
-		(#{data.runId},#{data.projectId},#{data.failMethod},#{data.failMessage},#{data.owner},#{data.status},#{data.createTime},#{data.identifyPople},#{data.notificationMessage},#{data.notificationTime})
+		(#{data.runId},#{data.projectId},#{data.failMethod},#{data.failMessage},#{data.owner},#{data.status},#{data.createTime})
 		</foreach>
 	</insert>
 
@@ -30,7 +30,7 @@
 
 	<!-- 查询失败详细信息 -->
 	<select
-		id="getFailResultList">
+		id="getFailResultList" resultType="FailResultPojo">
 		SELECT
 		id,run_id,project_id,fail_method,fail_message,owner,status,create_time,identify_people,notification_message,notification_time
 		FROM fail_result

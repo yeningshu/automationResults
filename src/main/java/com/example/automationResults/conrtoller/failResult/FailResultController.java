@@ -37,7 +37,7 @@ public class FailResultController {
 	 * @param addFailResultBean
 	 * @return
 	 */
-	@PostMapping("")
+	@PostMapping("/fail/addFail")
 	@ResponseBody
 	public ResultData<Integer> addFail(@RequestBody AddFailResultBean addFailResultBean) {
 		log.info("前端入参为:" + JSONObject.toJSONString(addFailResultBean));
@@ -49,7 +49,7 @@ public class FailResultController {
 	 * @param addFailResultBeanList
 	 * @return
 	 */
-	@PostMapping("")
+	@PostMapping("/fail/addFailList")
 	@ResponseBody
 	public ResultData<Integer> addFailtList(@RequestBody List<AddFailResultBean> addFailResultBeanList) {
 		log.info("前端入参为:" + JSONObject.toJSONString(addFailResultBeanList));
@@ -61,7 +61,7 @@ public class FailResultController {
 	 * @param reviseFailResult
 	 * @return
 	 */
-	@PostMapping("")
+	@PostMapping("/fail/sendMessage")
 	@ResponseBody
 	public ResultData<Integer> reviseResult(@RequestBody ReviseFailResultBean reviseFailResult) {
 		log.info("前端入参为:" + JSONObject.toJSONString(reviseFailResult));
@@ -73,11 +73,11 @@ public class FailResultController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("")
+	@GetMapping("/fail/getResultList")
 	@ResponseBody
-	public ResultData<List<FailResultPojo>> reviseResult(Integer id) {
-		log.info("前端入参为:" + id);
-		return this.failResultService.getFailResultList(id);
+	public ResultData<List<FailResultPojo>> getResultList(Integer runId) {
+		log.info("前端入参为:" + runId);
+		return this.failResultService.getFailResultList(runId);
 	}
 	
 }

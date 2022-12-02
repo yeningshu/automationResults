@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.automationResults.bean.failResult.AddFailResultBean;
@@ -27,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class FailResultOpetate implements FailResultService{
 	
+	@Autowired
 	private FailResultMapper failResultMapper;
 
 	@Override
