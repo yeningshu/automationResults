@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--设置集标签 -->
+
+<!-- fail_result表操作 -->
+<mapper
+	namespace="com.example.automationResults.mapper.FailResultMapper">
+
+	<!-- 新增报告 -->
+	<insert
+		id="insertFailResult"
+		parameterType="FailResultPojo">
+		insert into
+		fail_result(run_id,project_id,fail_method,fail_message,owner,status,create_time,identify_people,notification_message,notification_time)
+		values
+		<foreach item="data" collection="list" separator=",">
+		(#{data.runId},#{data.projectId},#{data.failMethod},#{data.failMessage},#{data.owner},#{data.status},#{data.createTime},#{data.identifyPople},#{data.notificationMessage},#{data.notificationTime})
+		</foreach>
+	</insert>
+
+
+	<!-- 添加失败信息 -->
+	<update id="updateStatus">
+		update fail_result set status=#{status},
+		identify_people=#{identifyPeople},notification_message=#{notificationMessage},notification_time=#{notificationTime}
+		where id = #{id}
+	</update>
+
+	<!-- 查询失败详细信息 -->
+	<select
+		id="getFailResultList">
+		SELECT
+		id,run_id,project_id,fail_method,fail_message,owner,status,create_time,identify_people,notification_message,notification_time
+		FROM fail_result
+		where run_id = #{runId}
+	</select>
+
+
+</mapper>
