@@ -20,5 +20,5 @@ public class ProjectPojo {
 	private String projectName;
 	private String status;
 	private String projectUser;
-	private Timestamp creatTime;
+	private Timestamp createTime;
 }

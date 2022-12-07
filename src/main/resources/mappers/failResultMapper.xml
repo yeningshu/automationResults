@@ -8,7 +8,7 @@
 <mapper
 	namespace="com.example.automationResults.mapper.FailResultMapper">
 
-	<!-- 新增报告 -->
+	<!-- 新增失败详情 -->
 	<insert
 		id="insertFailResult"
 		parameterType="FailResultPojo">
@@ -21,7 +21,7 @@
 	</insert>
 
 
-	<!-- 添加失败信息 -->
+	<!-- 更新失败详情 -->
 	<update id="updateStatus">
 		update fail_result set status=#{status},
 		identify_people=#{identifyPeople},notification_message=#{notificationMessage},notification_time=#{notificationTime}
